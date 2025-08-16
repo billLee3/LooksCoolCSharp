@@ -1,0 +1,39 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build artifacts
+bin/
+obj/
+artifacts/
+
+# NuGet packages
+packages/
+*.nupkg
+.nuget/NuGetScratch/
+
+# Node.js modules (if using client-side technologies like Angular/React)
+node_modules/
+npm-debug.log
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Operating System files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Temporary files
+temp/
+*.tmp
+*.log
+
+# Sensitive files
+appsettings.Development.json # Or other environment-specific appsettings files
+appsettings.Production.json
+appsettings.Staging.json
+# If you have other sensitive configuration files or API keys, add them here.
