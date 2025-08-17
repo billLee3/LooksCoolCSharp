@@ -33,7 +33,7 @@ temp/
 *.log
 
 # Sensitive files
-appsettings.Development.json # Or other environment-specific appsettings files
+appsettings.Development.json
 appsettings.Production.json
 appsettings.Staging.json
 # If you have other sensitive configuration files or API keys, add them here.
