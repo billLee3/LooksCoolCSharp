@@ -1,19 +1,22 @@
-# https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /source
-
-# copy csproj and restore as distinct layers
-COPY *.sln .
-COPY /*.csproj ./powerappsuivalues
-RUN dotnet restore
-
-# copy everything else and build app
-COPY /. ./powerappsuivalues/
-WORKDIR /source/powerappsuivalues
-RUN dotnet publish -c release -o /app --no-restore
-
-# final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/sdk:8.0
 WORKDIR /app
-COPY --from=build /app ./
+COPY . .
+RUN dotnet build -c Release -o /rel
+EXPOSE 80
+WORKDIR /rel
 ENTRYPOINT ["dotnet", "powerappsuivalues.dll"]
+
+# FROM mcr.microsoft.com/dotnet/sdk:8.0
+# WORKDIR /src
+# COPY ["PowerAppsUIValues.csproj", "PowerAppsUIValues/"]
+# RUN dotnet restore "PowerAppsUIValues/PowerAppsUIValues.csproj"
+
+# COPY . .
+
+# RUN dotnet build "src/PowerAppsUIValues/PowerAppsUIValues.csproj" -c Release -o /app
+
+# RUN dotnet publish "src/PowerAppsUIValues/PowerAppsUIValues.csproj" -c Release -o /app
+
+# EXPOSE 80
+# WORKDIR /app
+# ENTRYPOINT [ "dotnet", "powerappsuivalues.dll" ]
